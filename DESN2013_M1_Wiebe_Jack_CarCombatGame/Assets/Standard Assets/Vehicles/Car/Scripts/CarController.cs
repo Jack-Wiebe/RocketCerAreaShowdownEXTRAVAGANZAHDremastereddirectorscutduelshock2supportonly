@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -42,7 +43,10 @@ namespace UnityStandardAssets.Vehicles.Car
 		[SerializeField] private bool _rightGunFiring;
 		[SerializeField] private Transform gunRight;
 		[SerializeField] private Transform gunLeft;
-		[SerializeField] private GameObject Bullet;
+		[SerializeField] private GameObject _bullet;
+
+		[SerializeField] private int _bulletPoolNum = 100;
+		[SerializeField] private List<GameObject> Bullets;
 
 
         private Quaternion[] m_WheelMeshLocalRotations;
@@ -63,6 +67,9 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
+
+		private IEnumerator coroutine;
+
         // Use this for initialization
         private void Start()
         {
@@ -77,27 +84,76 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+
+			coroutine = Firing ();
+
+			//create object pool
+			Bullets = new List<GameObject> ();
+			for (int i = 0; i < _bulletPoolNum; i++) {
+				GameObject obj = (GameObject)Instantiate (_bullet);
+				obj.SetActive (false);
+				Bullets.Add (obj);
+			}
         }
+
+
+
 
 		public void ShootOn()
 		{
-			StartCoroutine (Firing ());
+			
+			StartCoroutine (coroutine);
 		}
 
 		public void ShootOff()
 		{
-			StopCoroutine (Firing ());
+			Debug.Log ("Break");
+			StopCoroutine (coroutine);
 		}
 
 		public IEnumerator Firing()
 		{
+
+			//determines what gun is currently firing
+			//searches objpool for unused bullet to fire
 			while (true) {
 				yield return new WaitForSeconds (_fireDelay);
 				if (_rightGunFiring) {
-					Instantiate (Bullet, gunRight.position, Quaternion.identity);
+					for (int i = 0; i < Bullets.Count; i++) {
+
+						if (!Bullets[i].activeInHierarchy) {
+							Bullets[i].transform.position = gunRight.position;
+							Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f);
+							Bullets[i].transform.rotation = ang;
+							Bullets[i].SetActive (true);
+							break;
+						}
+
+					}
+					//GameObject temp = (GameObject)Instantiate (_bullet, gunRight.position, Quaternion.identity);
+					//Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f) ;
+					//temp.transform.rotation = ang;
+					_rightGunFiring = false;
+
 				} else if (!_rightGunFiring) {
-					Instantiate (Bullet, gunLeft.position, Quaternion.identity);
+					for (int i = 0; i < Bullets.Count; i++) {
+
+						if (!Bullets[i].activeInHierarchy) {
+							Bullets[i].transform.position = gunLeft.position;
+							Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f);
+							Bullets[i].transform.rotation = ang;
+							Bullets[i].SetActive (true);
+							break;
+						}
+
+					}
+					//GameObject temp = (GameObject)Instantiate (_bullet, gunLeft.position, Quaternion.identity);
+					//Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f) ;
+					//temp.transform.rotation = ang;
+					_rightGunFiring = true;
+				
 				}
+
 			}
 		}
 

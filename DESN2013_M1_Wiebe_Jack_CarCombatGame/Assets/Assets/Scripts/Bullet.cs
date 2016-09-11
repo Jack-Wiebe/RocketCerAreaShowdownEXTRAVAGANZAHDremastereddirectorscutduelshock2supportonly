@@ -7,24 +7,31 @@ public class Bullet : MonoBehaviour {
 	[SerializeField] private Vector3 _dir;
 	[SerializeField] private float _bulletSpeed;
 	[SerializeField] private float _bulletLife;
+	[SerializeField] private GameObject _car;
 
 
 
 	// Use this for initialization
-	void Start () {
-		_initialPos = this.transform.position;
+	void OnEnable () {
 		StartCoroutine (DestroyMe());
+	}
+	void OnDisable () {
+		StopAllCoroutines ();
+	}
+	public void findPlayer(GameObject player)
+	{
+		_car = player;
 	}
 
 	IEnumerator DestroyMe()
 	{
 		yield return new WaitForSeconds (_bulletLife);
-		Destroy (this.gameObject);
+		this.gameObject.SetActive (false);;
 			
 	}
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.position += (_bulletSpeed * _dir);
+		this.transform.position += this.transform.forward * (_bulletSpeed * Time.deltaTime);
 	}
 }

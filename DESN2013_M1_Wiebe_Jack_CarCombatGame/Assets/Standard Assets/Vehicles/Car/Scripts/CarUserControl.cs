@@ -23,6 +23,7 @@ namespace UnityStandardAssets.Vehicles.Car
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 			float fire = CrossPlatformInputManager.GetAxis("Shoot");
+			Debug.Log (fire);
 			if (fire > 0) {
 				m_Car.ShootOn ();
 			}
