@@ -117,42 +117,36 @@ namespace UnityStandardAssets.Vehicles.Car
 			//determines what gun is currently firing
 			//searches objpool for unused bullet to fire
 			while (true) {
+
 				yield return new WaitForSeconds (_fireDelay);
-				if (_rightGunFiring) {
-					for (int i = 0; i < Bullets.Count; i++) {
 
-						if (!Bullets[i].activeInHierarchy) {
-							Bullets[i].transform.position = gunRight.position;
-							Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f);
-							Bullets[i].transform.rotation = ang;
-							Bullets[i].SetActive (true);
-							break;
+				for (int i = 0; i < Bullets.Count; i++) {
+
+					if (!Bullets [i].activeInHierarchy) {
+
+						if (_rightGunFiring) {
+							Bullets [i].transform.position = gunRight.position;
+							_rightGunFiring = false;
+						} else {
+							Bullets [i].transform.position = gunLeft.position;
+							_rightGunFiring = true;
 						}
 
-					}
-					//GameObject temp = (GameObject)Instantiate (_bullet, gunRight.position, Quaternion.identity);
-					//Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f) ;
-					//temp.transform.rotation = ang;
-					_rightGunFiring = false;
+						Quaternion ang = Quaternion.Euler (0.0f, this.transform.rotation.eulerAngles.y, 0.0f);
+						Bullets [i].transform.rotation = ang;
 
-				} else if (!_rightGunFiring) {
-					for (int i = 0; i < Bullets.Count; i++) {
+						Bullets [i].SetActive (true);
 
-						if (!Bullets[i].activeInHierarchy) {
-							Bullets[i].transform.position = gunLeft.position;
-							Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f);
-							Bullets[i].transform.rotation = ang;
-							Bullets[i].SetActive (true);
-							break;
-						}
+						//i = Bullets.Count;
+						break;
 
 					}
-					//GameObject temp = (GameObject)Instantiate (_bullet, gunLeft.position, Quaternion.identity);
-					//Quaternion ang = Quaternion.Euler(0.0f ,this.transform.rotation.eulerAngles.y, 0.0f) ;
-					//temp.transform.rotation = ang;
-					_rightGunFiring = true;
-				
 				}
+
+				Debug.Log (_fireDelay);
+			
+				//Debug.Break ();
+				//yield return new WaitForSeconds (_fireDelay);
 
 			}
 		}

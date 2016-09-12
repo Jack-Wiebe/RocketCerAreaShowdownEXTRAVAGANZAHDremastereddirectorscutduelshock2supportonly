@@ -47,6 +47,9 @@
   <ItemGroup>
      <Compile Include="Assets\Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Assets\Scripts\COLOR.cs" />
+     <Compile Include="Assets\Projectile_Base.cs" />
+     <Compile Include="Assets\Turret_Firing.cs" />
+     <Compile Include="Assets\Turret_Tracking.cs" />
      <None Include="Assets\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Standard Assets\Vehicles\Aircraft\AircraftGuidelines.txt" />
      <None Include="Assets\Standard Assets\Vehicles\Car\Shaders\ReflectiveDiffuseSpecTransp.shader" />

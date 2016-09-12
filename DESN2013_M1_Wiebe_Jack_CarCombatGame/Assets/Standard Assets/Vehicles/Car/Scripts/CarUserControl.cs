@@ -8,7 +8,7 @@ namespace UnityStandardAssets.Vehicles.Car
     public class CarUserControl : MonoBehaviour
     {
         private CarController m_Car; // the car controller we want to use
-
+		private bool m_shooting = false;
 
         private void Awake()
         {
@@ -23,12 +23,14 @@ namespace UnityStandardAssets.Vehicles.Car
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 			float fire = CrossPlatformInputManager.GetAxis("Shoot");
-			Debug.Log (fire);
-			if (fire > 0) {
+			//Debug.Log (fire);
+			if (fire > 0 && !m_shooting) {
 				m_Car.ShootOn ();
+				m_shooting = true;
 			}
 			else if (fire == 0) {
 				m_Car.ShootOff ();
+				m_shooting = false;
 			}
 #if !MOBILE_INPUT
             float handbrake = CrossPlatformInputManager.GetAxis("Jump");
