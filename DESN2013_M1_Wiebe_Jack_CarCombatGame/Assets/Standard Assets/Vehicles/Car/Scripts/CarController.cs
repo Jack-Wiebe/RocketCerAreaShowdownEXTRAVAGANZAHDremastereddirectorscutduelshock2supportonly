@@ -97,7 +97,10 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
 
-
+		public void SpeedBoost()
+		{
+			this.Move (0.0f,10000.0f, 0.0f, 0.0f);
+		}
 
 		public void ShootOn()
 		{
