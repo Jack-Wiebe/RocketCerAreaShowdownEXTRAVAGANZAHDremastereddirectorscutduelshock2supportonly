@@ -7,12 +7,14 @@ namespace UnityStandardAssets.Vehicles.Car
     [RequireComponent(typeof (CarController))]
     public class CarUserControl : MonoBehaviour
     {
-        private CarController m_Car; // the car controller we want to use
+        private CarController m_Car; // the car controller we want to use 
 		private bool m_shooting = false;
+		private Car_Shooting_System m_CarWeapon;
 
         private void Awake()
         {
             // get the car controller
+			m_CarWeapon = GetComponent<Car_Shooting_System>();
             m_Car = GetComponent<CarController>();
         }
 
@@ -25,11 +27,11 @@ namespace UnityStandardAssets.Vehicles.Car
 			float fire = CrossPlatformInputManager.GetAxis("Shoot");
 			//Debug.Log (fire);
 			if (fire > 0 && !m_shooting) {
-				m_Car.ShootOn ();
+				m_CarWeapon.ShootOn ();
 				m_shooting = true;
 			}
 			else if (fire == 0) {
-				m_Car.ShootOff ();
+				m_CarWeapon.ShootOff ();
 				m_shooting = false;
 			}
 #if !MOBILE_INPUT

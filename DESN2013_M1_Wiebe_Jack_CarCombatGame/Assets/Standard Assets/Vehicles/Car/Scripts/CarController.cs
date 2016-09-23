@@ -39,15 +39,6 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
 
-		[SerializeField] private float _fireDelay = 0.5f;
-		[SerializeField] private bool _rightGunFiring;
-		[SerializeField] private Transform gunRight;
-		[SerializeField] private Transform gunLeft;
-		[SerializeField] private GameObject _bullet;
-
-		[SerializeField] private int _bulletPoolNum = 100;
-		[SerializeField] private List<GameObject> Bullets;
-
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -68,8 +59,6 @@ namespace UnityStandardAssets.Vehicles.Car
         public float AccelInput { get; private set; }
 
 
-		private IEnumerator coroutine;
-
         // Use this for initialization
         private void Start()
         {
@@ -85,15 +74,6 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
 
-			coroutine = Firing ();
-
-			//create object pool
-			Bullets = new List<GameObject> ();
-			for (int i = 0; i < _bulletPoolNum; i++) {
-				GameObject obj = (GameObject)Instantiate (_bullet);
-				obj.SetActive (false);
-				Bullets.Add (obj);
-			}
         }
 
 
@@ -102,57 +82,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.Move (0.0f,10000.0f, 0.0f, 0.0f);
 		}
 
-		public void ShootOn()
-		{
-			
-			StartCoroutine (coroutine);
-		}
 
-		public void ShootOff()
-		{
-			Debug.Log ("Break");
-			StopCoroutine (coroutine);
-		}
-
-		public IEnumerator Firing()
-		{
-
-			//determines what gun is currently firing
-			//searches objpool for unused bullet to fire
-			while (true) {
-
-				yield return new WaitForSeconds (_fireDelay);
-
-				for (int i = 0; i < Bullets.Count; i++) {
-
-					if (!Bullets [i].activeInHierarchy) {
-
-						if (_rightGunFiring) {
-							Bullets [i].transform.position = gunRight.position;
-							_rightGunFiring = false;
-						} else {
-							Bullets [i].transform.position = gunLeft.position;
-							_rightGunFiring = true;
-						}
-
-						Quaternion ang = Quaternion.Euler (0.0f, this.transform.rotation.eulerAngles.y, 0.0f);
-						Bullets [i].transform.rotation = ang;
-
-						Bullets [i].SetActive (true);
-
-						//i = Bullets.Count;
-						break;
-
-					}
-				}
-
-				Debug.Log (_fireDelay);
-			
-				//Debug.Break ();
-				//yield return new WaitForSeconds (_fireDelay);
-
-			}
-		}
 
         private void GearChanging()
         {
