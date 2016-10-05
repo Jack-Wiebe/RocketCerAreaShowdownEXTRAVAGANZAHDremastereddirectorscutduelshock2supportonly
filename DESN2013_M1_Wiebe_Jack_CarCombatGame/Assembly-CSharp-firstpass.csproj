@@ -70,8 +70,6 @@
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarAudio.cs" />
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarController.cs" />
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarSelfRighting.cs" />
-     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs" />
-     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\Car_Shooting_System.cs" />
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\Mudguard.cs" />
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
      <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />

@@ -47,8 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Assets\Scripts\COLOR.cs" />
+     <Compile Include="Assets\Assets\Scripts\CarUserControl.cs" />
+     <Compile Include="Assets\Assets\Scripts\Car_Controller.cs" />
+     <Compile Include="Assets\Assets\Scripts\Car_Shooting_System.cs" />
      <Compile Include="Assets\Assets\Scripts\Fire.cs" />
      <Compile Include="Assets\Assets\Scripts\Halo_glow.cs" />
+     <Compile Include="Assets\Assets\Scripts\HoverFollowCam.cs" />
      <Compile Include="Assets\Assets\Scripts\Projectile_Base.cs" />
      <Compile Include="Assets\Assets\Scripts\Speedpad.cs" />
      <Compile Include="Assets\Assets\Scripts\Speedpad_glow.cs" />
