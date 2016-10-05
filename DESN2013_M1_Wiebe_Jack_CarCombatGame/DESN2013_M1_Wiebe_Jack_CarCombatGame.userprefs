@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\Car_Controller.cs">
     <Files>
-      <File FileName="Assets\Assets\Scripts\Car_Shooting_System.cs" Line="71" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Car_Shooting_System.cs" Line="1" Column="1" />
       <File FileName="Assets\Assets\Scripts\CarUserControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\Car_Controller.cs" Line="105" Column="8" />
-      <File FileName="Assets\Assets\Scripts\Turret_Firing.cs" Line="36" Column="1" />
-      <File FileName="Assets\Assets\Scripts\HoverFollowCam.cs" Line="43" Column="30" />
+      <File FileName="Assets\Assets\Scripts\Car_Controller.cs" Line="52" Column="7" />
+      <File FileName="Assets\Assets\Scripts\Turret_Firing.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\HoverFollowCam.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

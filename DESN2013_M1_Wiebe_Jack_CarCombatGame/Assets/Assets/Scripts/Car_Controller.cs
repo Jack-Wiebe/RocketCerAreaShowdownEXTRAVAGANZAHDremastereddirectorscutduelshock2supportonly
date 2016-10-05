@@ -49,7 +49,7 @@ public class Car_Controller : MonoBehaviour {
 			{
 				Gizmos.color = Color.blue;
 				Gizmos.DrawLine(wheel.transform.position, hit.point);
-				Gizmos.DrawSphere(hit.point, 0.5f);
+				//Gizmos.DrawSphere(hit.point, 0.5f);
 			} else
 			{
 				Gizmos.color = Color.red;
@@ -102,7 +102,7 @@ public class Car_Controller : MonoBehaviour {
 				if (this.transform.position.y > tempWheel.transform.position.y) {
 					m_rRef.AddForceAtPosition (tempWheel.transform.up * m_suspensionForce, tempWheel.transform.position);
 				} else {
-					//m_rRef.AddForceAtPosition (tempWheel.transform.up * -m_suspensionForce, tempWheel.transform.position);
+					m_rRef.AddForceAtPosition (tempWheel.transform.up * -m_suspensionForce, tempWheel.transform.position);
 				}
 			}
 		}
