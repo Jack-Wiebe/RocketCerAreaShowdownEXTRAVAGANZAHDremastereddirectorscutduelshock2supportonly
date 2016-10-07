@@ -49,7 +49,7 @@ public class Car_Controller : MonoBehaviour {
 			{
 				Gizmos.color = Color.blue;
 				Gizmos.DrawLine(wheel.transform.position, hit.point);
-				//Gizmos.DrawSphere(hit.point, 0.5f);
+				Gizmos.DrawSphere(hit.point, 0.5f);
 			} else
 			{
 				Gizmos.color = Color.red;

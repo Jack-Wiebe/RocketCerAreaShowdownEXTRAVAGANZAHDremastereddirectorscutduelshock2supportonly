@@ -44,7 +44,7 @@ using System.Collections.Generic;
 		public void Explode()
 		{
 			this.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-			//m_car.GetComponent<Car_Controller> ().Move (0, 0, 0, 1000);
+			m_car.GetComponent<Car_Controller> ().Move (0, 0);
 			foreach(Rigidbody rigid in rigidArray)
 			{
 				rigid.velocity = Vector3.zero;
@@ -52,7 +52,7 @@ using System.Collections.Generic;
 				rigid.isKinematic = false;
 				rigid.useGravity = true;
 				//Debug.Break ();
-				rigid.AddForce(Random.Range (-100, 100), Random.Range (300, 500), Random.Range (-100, 100) );
+			rigid.AddForce(Random.Range (-50, 150), Random.Range (200, 400), Random.Range (-60, 60) );
 			}
 		m_car.GetComponent<CarUserControl> ().enabled = false;
 		m_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAudio> ().pitchMultiplier = 0.0f;

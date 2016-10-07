@@ -59,6 +59,7 @@
      <Compile Include="Assets\Assets\Scripts\Turret_AI.cs" />
      <Compile Include="Assets\Assets\Scripts\Turret_Firing.cs" />
      <Compile Include="Assets\Assets\Scripts\Turret_Tracking.cs" />
+     <Compile Include="Assets\Saw.cs" />
      <Compile Include="Assets\_MK\_MKGlowSystem\_Demo\Code\MK_DemoControl.cs" />
      <Compile Include="Assets\_MK\_MKGlowSystem\_Demo\Code\MK_RotateObject.cs" />
      <Compile Include="Assets\_MK\_MKGlowSystem\_Internal\MKGlow.cs" />

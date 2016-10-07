@@ -9,6 +9,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		[SerializeField] private LayerMask m_mask;
 		[SerializeField] private int m_enemyLayer;
+		[SerializeField] private float m_force  = 600.0f;
 
 		// Use this for initialization
 		void Start () {
@@ -25,7 +26,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			if (target.CompareTag("Player")) {
 
 				//Debug.Break ();
-				target.attachedRigidbody.velocity = (this.transform.forward * 100.0f);
+				target.attachedRigidbody.velocity = (this.transform.forward * m_force);
 
 
 			}
